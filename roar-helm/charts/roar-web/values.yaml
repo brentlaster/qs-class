@@ -11,7 +11,7 @@ deployment:
     name: web
     containerPort: 8080
 service:
-  type: NodePort
+  portType: NodePort
   frontendPortName: frontend
   externalPort: 8080
   internalPort: 8089

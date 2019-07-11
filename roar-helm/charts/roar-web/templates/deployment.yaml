@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "roar-web.name" }}
+  name: {{ template "roar-web.name" . }}
   labels:
     app: {{ template "roar-web.name" . }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
@@ -21,6 +21,6 @@ spec:
         imagePullPolicy: {{ toYaml .Values.image.pullPolicy }}
       {{- end }} 
         ports:
-          name: {{ .Values.deployment.ports.name }}
+        - name: {{ .Values.deployment.ports.name }}
           containerPort: {{ .Values.deployment.ports.containerPort }}
        

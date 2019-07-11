@@ -10,10 +10,10 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   ports:
-    - name: {{ .Values.service.frontendPortName }}
-      port: {{ .Values.service.internalPort }}
-      targetPort: {{ .Values.service.externalPort }}
+  - name: {{ .Values.service.frontendPortName }}
+    port: {{ .Values.service.internalPort }}
+    targetPort: {{ .Values.service.externalPort }}
   selector:
-      app: {{ template "roar-db.name" . }}
+    app: {{ template "roar-db.name" . }}
      
 
