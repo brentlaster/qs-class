@@ -16,12 +16,12 @@ deployment:
         containers:
           web:
             name: roar-web
-            image: localhost:5000/roar-web-image
+            image: localhost:5000/roar-web
             tag: v1
             pullPolicy: Always
           db:
             name: roar-db
-            image: localhost:5000/roar-db-image
+            image: localhost:5000/roar-db
             tag: v1
             ports:
               name: roar-db
