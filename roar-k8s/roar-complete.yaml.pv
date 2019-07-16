@@ -77,7 +77,7 @@ spec:
                 name: mysql-configmap
                 key: mysql.user
         volumeMounts:
-        - mountPath: /var/lib/mysql/data
+        - mountPath: /var/lib/mysql
           name: mysql-pv-claim
       volumes:
       - name: mysql-pv-claim
