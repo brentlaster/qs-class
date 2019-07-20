@@ -1,0 +1,99 @@
+apiVersion: extensions/v1beta1
+kind: Namespace
+metadata:
+  name: probes
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: roar-web
+  labels:
+    name: roar-web
+  namespace: probes
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: roar-web
+    spec:
+      containers:
+      - name: roar-web
+        image: localhost:5000/roar-web:v1
+        ports:
+        - name: web
+          containerPort: 8080
+        livenessProbe:
+          httpGet:
+             path: /api/v1/status
+             port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: roar-web
+  labels:
+    name: roar-web
+  namespace: probes
+spec:
+  type: NodePort
+  ports:
+  - port: 8089
+    targetPort: 8080
+    nodePort: 31789
+  selector:
+    name: roar-web
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    name: mysql
+  namespace: probes
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: localhost:5000/roar-db:v1
+        ports:
+        - name: mysql
+          containerPort: 3306
+        readinessProbe:
+          exec:
+            command:
+            - mysql
+          initialDelaySeconds: 5
+        env:
+        - name: MYSQL_DATABASE
+          value: registry
+        - name: MYSQL_PASSWORD
+          value: admin
+        - name: MYSQL_ROOT_PASSWORD
+          value: root+1
+        - name: MYSQL_USER
+          value: admin
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  labels:
+    name: mysql
+  namespace: probes
+spec:
+  ports:
+  - name: "mysql"
+    port: 3306
+    targetPort: 3306
+  selector:
+    name: mysql
+
+
