@@ -4,7 +4,7 @@ metadata:
   name: roar-web
   labels:
     name: roar-web
-  namespace: roar
+  namespace: gitops
 spec:
   replicas: 1
   template:
@@ -32,7 +32,7 @@ metadata:
   name: roar-web
   labels:
     name: roar-web
-  namespace: roar
+  namespace: gitops
 spec:
   type: NodePort
   ports:
