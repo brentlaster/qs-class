@@ -48,7 +48,7 @@ metadata:
   name: mysql
   labels:
     name: mysql
-  namespace: roar
+  namespace: gitops
 spec:
   replicas: 1
   template:
@@ -78,7 +78,7 @@ metadata:
   name: mysql
   labels:
     name: mysql
-  namespace: roar
+  namespace: gitops
 spec:
   ports:
   - name: "mysql"
