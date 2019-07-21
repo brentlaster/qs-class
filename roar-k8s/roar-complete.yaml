@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: roar-web
-        image: localhost:5000/roar-web-image:v1
+        image: localhost:5000/roar-web-v1
         ports:
         - name: web
           containerPort: 8080
@@ -51,7 +51,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: localhost:5000/roar-db-image:v1
+        image: localhost:5000/roar-db-v1
         ports:
         - name: mysql
           containerPort: 3306
