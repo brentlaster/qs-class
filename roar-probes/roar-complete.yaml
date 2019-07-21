@@ -42,7 +42,7 @@ spec:
   ports:
   - port: 8089
     targetPort: 8080
-    nodePort: 31789
+    nodePort: 31791
   selector:
     name: roar-web
 ---
